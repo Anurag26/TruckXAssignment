@@ -1,0 +1,19 @@
+body{
+    padding: 2%;
+}
+
+.add-user{
+    float: right;
+    margin: 1%;
+}
+
+.table-head{
+    background-color: black;
+    padding: 2%;
+    color: white;
+}
+
+.table-row{
+    padding: 2%;
+    overflow-wrap: break-word;
+}
