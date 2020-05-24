@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Link} from "react-router-dom";
 
 function Register() {
 
@@ -21,7 +22,7 @@ function Register() {
 
     return (
         <div className="container">
-            <h1>Sign Up</h1>
+            <h1>Register</h1>
             <br/>
             <br/>
             <form>
@@ -62,8 +63,8 @@ function Register() {
                         <button onClick={()=>submit()} className="btn btn-primary btn-block wbdv-button wbdv-register">Register</button>
                         <div className="row">
                             <div className="col-6">
-                                <a href=""
-                                   className="wbdv-link wbdv-login">Sign-in Instead</a>
+                                <Link to={'/login'}
+                                   className="wbdv-link wbdv-login">Login</Link>
                             </div>
                         </div>
                     </div>

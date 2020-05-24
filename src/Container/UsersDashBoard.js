@@ -1,17 +1,24 @@
 import React, {Component} from 'react';
-import {combineReducers, createStore} from "redux";
-import UsersReducer from '../Reducers/UsersReducer';
-import {Provider} from "react-redux";
 import './user-dashboard-style.css';
+import {connect} from "react-redux";
+import {Link} from "react-router-dom";
+import {initAllUsers} from "../Services/UserServices";
+import PropTypes from "prop-types";
+import UserTable from "../Components/UserTable";
 
-const userReducer  = combineReducers({users:UsersReducer});
-const store = createStore(userReducer);
 
 class UsersDashBoard extends Component {
 
+    componentDidMount() {
+        console.log("component did mount")
+        this.props.initAllUsers();
+    }
+
+
+
+
     render() {
         return (
-            <Provider store={store}>
             <div className="container">
                 <h1>My Customers</h1>
                 <div className="row">
@@ -28,7 +35,7 @@ class UsersDashBoard extends Component {
                 </div>
                 <div className="row">
                     <div className="col-sm-12">
-                        <button type="button" className="btn btn-success add-user">Add User</button>
+                        <Link to="/add-user" type="button" className="btn btn-success add-user">Add User</Link>
                     </div>
                 </div>
                 <div className="user-table">
@@ -43,27 +50,47 @@ class UsersDashBoard extends Component {
                                 <div className="col-sm-2">Actions</div>
                             </div>
                         </div>
-                        <div className="col-sm-12 table-row">
-                            <div className="row">
-                                <div className="col-sm-2">Anurag Bannur</div>
-                                <div className="col-sm-2">abannur</div>
-                                <div className="col-sm-2">bannur@bannur.com</div>
-                                <div className="col-sm-2">+12345678</div>
-                                <div className="col-sm-2">11/11/2020</div>
-                                <div className="col-sm-2">
-                                    <div className="row">
-                                        <div className="col-sm-6"><button className="btn btn-primary">Edit</button></div>
-                                        <div className="col-sm-6"><button className="btn btn-danger">Delete </button></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {/*{Array.from(this.props.users.map(user=>console.log(user)))}*/}
+                        {/*{this.props.users? this.props.users.map(user=><UsersDashBoard user={user}/>):<li></li>}*/}
+                        {this.props.users.map(user=><UserTable user={user}/>)}
                     </div>
                 </div>
             </div>
-            </Provider>
+
         );
     }
 }
 
-export default UsersDashBoard;
+// const mapStateToProps = (state) =>{
+//     // console.log(state.users[0])
+// return{
+//     users:state.users
+// }
+// };
+
+function mapStateToProps(state) {
+    return {
+        users: state.users
+        // apiCallsInProgress: state.apiCallsInProgress,
+    };
+}
+
+const mapDispatchToProps = (dispatch) =>{
+
+    return{
+        initAllUsers:() =>{
+            console.log("users");
+            initAllUsers()
+                .then(users=>dispatch({
+                    type:"INIT_ALL_USERS",
+                    users:users.data
+                }))
+        }
+    }
+};
+
+UsersDashBoard.propTypes = {
+    users: PropTypes.array.isRequired,
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(UsersDashBoard);

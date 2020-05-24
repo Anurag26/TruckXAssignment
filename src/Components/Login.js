@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Link} from "react-router-dom";
 
 function Login() {
 
@@ -11,7 +12,7 @@ function Login() {
 
     return (
         <div className="container">
-            <h1>Sign In</h1>
+            <h1>Login</h1>
             <br/>
             <br/>
             <form>
@@ -39,11 +40,11 @@ function Login() {
                 <div className="form-group row">
                     <label className="col-sm-2 col-form-label"></label>
                     <div className="col-sm-10">
-                        <btn className="btn btn-primary btn-block wbdv-button wbdv-login" onClick={()=>submit()}>Sign in</btn>
+                        <btn className="btn btn-primary btn-block wbdv-button wbdv-login" onClick={()=>submit()}>Log in</btn>
                         <div className="row">
                             <div className="col-sm-12 ">
-                                <a href="#"
-                                   className="float-right wbdv-link wbdv-register">Register as a New User</a>
+                                <Link to={'/register'}
+                                   className="float-right wbdv-link wbdv-register">Register as a New User</Link>
                             </div>
                         </div>
                     </div>
