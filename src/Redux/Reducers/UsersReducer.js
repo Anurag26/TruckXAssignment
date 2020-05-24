@@ -1,13 +1,8 @@
+import initialState from "../initialState";
 
 
-const initState={
-    users:[],
-    first_time:true,
-    user_being_edited:{}
-};
 
-
-const UsersReducer = (state = initState , action)=>{
+const UsersReducer = (state = initialState , action)=>{
 
     switch (action.type) {
         case 'INIT_ALL_USERS':
