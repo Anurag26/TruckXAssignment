@@ -17,7 +17,9 @@ class UserTable extends Component {
                             <Link className="btn btn-primary"  to={{
                                 pathname: '/edit-user/'+this.props.user.id,
                             }}>Edit</Link>
-                            <div className="col-sm-6"><button className="btn btn-danger">Delete</button></div>
+                            <div className="col-sm-6"><button className="btn btn-danger"
+                                                              onClick={()=>this.props.deleteUser(this.props.user.id)}
+                                                              >Delete</button></div>
                         </div>
                     </div>
                 </div>

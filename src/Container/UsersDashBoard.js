@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './user-dashboard-style.css';
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {initAllUsers} from "../Services/UserServices";
+import {deleteUser, initAllUsers} from "../Services/UserServices";
 import PropTypes from "prop-types";
 import UserTable from "../Components/UserTable";
 
@@ -10,10 +10,9 @@ import UserTable from "../Components/UserTable";
 class UsersDashBoard extends Component {
 
     componentDidMount() {
-        if(this.props.users.length===0){
+        if(this.props.first_time){
             this.props.initAllUsers();
         }
-
     }
 
 
@@ -51,7 +50,7 @@ class UsersDashBoard extends Component {
                                 <div className="col-sm-2">Actions</div>
                             </div>
                         </div>
-                        {this.props.users.map(user=><UserTable user={user} />)}
+                        {this.props.users.map(user=><UserTable user={user} deleteUser={this.props.deleteUser}/>)}
                     </div>
                 </div>
             </div>
@@ -64,7 +63,8 @@ class UsersDashBoard extends Component {
 function mapStateToProps(state) {
     console.log(state.users.users)
     return {
-        users: state.users.users
+        users: state.users.users,
+        first_time:state.users.first_time
     };
 }
 
@@ -72,12 +72,25 @@ const mapDispatchToProps = (dispatch) =>{
 
     return{
         initAllUsers:() =>{
-            console.log("users");
             initAllUsers()
                 .then(users=>dispatch({
                     type:"INIT_ALL_USERS",
                     users:users.data
                 }))
+        },
+        deleteUser:(id)=>{
+            console.log("Yo")
+            deleteUser(id).then(resp=>{
+                if(resp===204){
+                    return dispatch({
+                        type:"DELETE_USER_BY_ID",
+                        userId:id
+                    })
+                }
+                else{
+                    alert("Could not delete user, try again!");
+                }
+            })
         }
     }
 };

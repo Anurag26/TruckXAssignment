@@ -1,7 +1,8 @@
 
 
 const initState={
-    users:[]
+    users:[],
+    first_time:true
 };
 
 
@@ -10,6 +11,7 @@ const UsersReducer = (state = initState , action)=>{
     switch (action.type) {
         case 'INIT_ALL_USERS':
             return {...state,
+            first_time: false,
             users:action.users
             };
         case 'CREATE_NEW_USER':
@@ -21,8 +23,6 @@ const UsersReducer = (state = initState , action)=>{
                 ]
             }
         case 'UPDATE_USER':
-            console.log(action.userId)
-            console.log(action.newUser)
             return{
                 ...state,
                 users:state.users.map(user=>{
@@ -34,6 +34,12 @@ const UsersReducer = (state = initState , action)=>{
                         return user;
                     }
                 })
+            }
+        case 'DELETE_USER_BY_ID':
+            console.log(action.userId)
+            return{
+                ...state,
+                users:state.users.filter(user=>{return user.id!==action.userId})
             }
 
         default:
