@@ -6,7 +6,7 @@ import EditUser from "./Components/EditUser";
 import {BrowserRouter,Route,Link} from "react-router-dom";
 import {Provider} from "react-redux";
 import {combineReducers, createStore} from "redux";
-import UsersReducer from "./Reducers/UsersReducer";
+import UsersReducer from "./Redux/Reducers/UsersReducer";
 
 const reducer  = combineReducers({users:UsersReducer});
 const store = createStore(reducer);
