@@ -19,6 +19,7 @@ class App extends Component {
                 <Route path="/add-user" exact={true}><AddUser/></Route>
                 <Route path="/edit-user/:id" exact={true}><EditUser/></Route>
                 <Route path="/login" exact={true}><Login/></Route>
+                <Route path="/" exact={true}><Login/></Route>
                 <Route path="/users" exact={true}><UsersDashBoard/></Route>
             </BrowserRouter>
             </Provider>
