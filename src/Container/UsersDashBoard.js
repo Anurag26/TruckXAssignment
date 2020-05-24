@@ -106,18 +106,19 @@ const mapDispatchToProps = (dispatch) =>{
                 }))
         },
         deleteUser:(id)=>{
-            console.log("Yo")
-            deleteUser(id).then(resp=>{
-                if(resp===204){
-                    return dispatch({
-                        type:"DELETE_USER_BY_ID",
-                        userId:id
-                    })
-                }
-                else{
-                    alert("Could not delete user, try again!");
-                }
-            })
+            if(window.confirm("Delete user?")){
+                deleteUser(id).then(resp=>{
+                    if(resp===204){
+                        return dispatch({
+                            type:"DELETE_USER_BY_ID",
+                            userId:id
+                        })
+                    }
+                    else{
+                        alert("Could not delete user, try again!");
+                    }
+                })
+            }
         },
         userSearch:(searchTerm) =>{
             dispatch({
