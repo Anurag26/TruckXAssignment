@@ -6,6 +6,7 @@ import {deleteUser, initAllUsers} from "../Services/UserServices";
 import PropTypes from "prop-types";
 import UserTable from "../Components/UserTable";
 import { withRouter } from 'react-router-dom';
+import {loadUsers} from "../Redux/actions/userActions";
 
 
 class UsersDashBoard extends Component {
@@ -101,12 +102,16 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) =>{
 
     return{
+        // initAllUsers:() =>{
+        //     initAllUsers()
+        //         .then(users=>dispatch({
+        //             type:"INIT_ALL_USERS",
+        //             users:users.data
+        //         }))
+        // },
         initAllUsers:() =>{
             initAllUsers()
-                .then(users=>dispatch({
-                    type:"INIT_ALL_USERS",
-                    users:users.data
-                }))
+                .then(users=>dispatch(loadUsers(users.data)))
         },
         deleteUser:(id)=>{
             if(window.confirm("Delete user?")){

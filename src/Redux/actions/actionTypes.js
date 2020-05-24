@@ -1,0 +1,6 @@
+export const INIT_ALL_USERS = 'INIT_ALL_USERS';
+export const CREATE_NEW_USER = 'CREATE_NEW_USER';
+export const UPDATE_USER = 'UPDATE_USER';
+export const DELETE_USER_BY_ID = 'DELETE_USER_BY_ID';
+export const SEARCH_USER_TERM = 'SEARCH_USER_TERM';
+export const FIND_USER_BYID = 'FIND_USER_BYID';

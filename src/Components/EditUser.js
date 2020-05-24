@@ -101,7 +101,8 @@ const mapDispatchToProps = (dispatch) =>{
                     dispatch({
                     type:'UPDATE_USER',
                     userId:id,
-                    newUser:newUser
+                    newUser:newUser,
+                        // user: {userID: id, newUser: newUser}
                 })}).catch(err=>(err))
         },
         findUserById:(id)=>{
