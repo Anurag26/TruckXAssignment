@@ -1,68 +1,27 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### This assignment is Anurag Bannur's attempt at the TruckX assignment for the role of Software Engineering Intern
 
-## Available Scripts
+1. To run the file, please clone the project into your favorite IDE.
+2. Run the command npm intall
+3. Run npm start
 
-In the project directory, you can run:
+### Website flow:
+1. You will be first redirected to Login page. Here you can login using any of the reqres users eg: email: eve.holt@reqres.in, password: cityslicka
+2. Once logged in you will navigate to the users page. The users page lists all the users initially loaded from reqres/users api.
+3. You can use the various buttons such as Add user, edit and delete to modify the local redux state. However, if refreshed the redux state will be blown away and you will be back to your initial state.
+4. In the search bar you can search for a particluar user through first-name, last_name, email and phone. However, this search is case sensitive.
+5. The assignment did not specify anything regarding the login/logout flow except that user has to be logged in before viewing the user dashboard. Hence, I took the liberty of implementing a logout button too. Hence, when <b>logged</b> out the user must sign in to access any other pages.
+The token returned from the api is stored in localstorage.
 
-### `npm start`
+### Assignment requirements completed:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Requirements | Status
+------------ | -------------
+Buttons to Add, Delete, Edit, Search | Done
+Add USER must display new Component and use the CREATE API | Done
+On Edit, user is navigated to new Page and allowed to Edit | Done
+User should be able to delete a record. Ask user confirmation before deleteing | Done
+Use Redux(optional) | Done
+Use class components | Yes
+Use hooks | Yes
+Use React router | Yes
