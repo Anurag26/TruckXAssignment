@@ -5,12 +5,9 @@ import AddUser from "./Components/AddUser";
 import EditUser from "./Components/EditUser";
 import {BrowserRouter,Route,Link} from "react-router-dom";
 import {Provider} from "react-redux";
-import {combineReducers, createStore} from "redux";
-import UsersReducer from "./Redux/Reducers/UsersReducer";
+import configureStore from "./Redux/configureStore";
 
-const reducer  = combineReducers({users:UsersReducer});
-const store = createStore(reducer);
-
+const store = configureStore();
 class App extends Component {
     render() {
         return (

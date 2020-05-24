@@ -1,16 +1,17 @@
 import initialState from "../initialState";
+import * as types from "../actions/actionTypes";
 
 
 
 const UsersReducer = (state = initialState , action)=>{
 
     switch (action.type) {
-        case 'INIT_ALL_USERS':
+        case types.INIT_ALL_USERS:
             return {...state,
             first_time: false,
             users:action.users
             };
-        case 'CREATE_NEW_USER':
+        case types.CREATE_NEW_USER:
             return{
                 ...state,
                 users:[
@@ -18,7 +19,7 @@ const UsersReducer = (state = initialState , action)=>{
                     action.user
                 ]
             }
-        case 'UPDATE_USER':
+        case types.UPDATE_USER:
             return{
                 ...state,
                 users:state.users.map(user=>{
@@ -30,13 +31,13 @@ const UsersReducer = (state = initialState , action)=>{
                     }
                 })
             }
-        case 'DELETE_USER_BY_ID':
+        case types.DELETE_USER_BY_ID:
             return{
                 ...state,
                 users:state.users.filter(user=>{return user.id!==action.userId})
             }
 
-        case 'SEARCH_USER_TERM':
+        case types.SEARCH_USER_TERM:
             return{
                 ...state,
                 users:state.users.filter(user=>{

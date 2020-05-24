@@ -96,26 +96,11 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) =>{
 
     return{
-        // updateUser:(id,user) =>{
-        //     updateUser(id,user)
-        //         .then(newUser=>{
-        //             dispatch({
-        //             type:'UPDATE_USER',
-        //                 user: {userId: id, newUser: newUser}
-        //         })}).catch(err=>(err))
-        // }
-
         updateUser:(id,user) =>{
             updateUser(id,user)
                 .then(newUser=>{
                     dispatch(updateUserByID(id, newUser))}).catch(err=>(err))
         }
-
-        // updateUser:(id,user) =>{
-        //     updateUser(id,user)
-        //         .then(newUser=>{
-        //             dispatch(updateUserByID(newUser))}).catch(err=>(err))
-        // }
     }
 };
 
