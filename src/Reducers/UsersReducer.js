@@ -42,6 +42,22 @@ const UsersReducer = (state = initState , action)=>{
                 users:state.users.filter(user=>{return user.id!==action.userId})
             }
 
+        case 'SEARCH_USER_TERM':
+            console.log(action.term)
+            return{
+                ...state,
+                users:state.users.filter(user=>{
+                    if(action.term.length>0){
+                        if(user.email===action.term||user.phone===action.term||user.first_name===action.term||user.last_name===action.term){
+                            return user;
+                        }
+                    }
+                    else{
+                        return state.users;
+                    }
+                })
+            }
+
         default:
             return state;
     }

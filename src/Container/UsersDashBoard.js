@@ -15,6 +15,13 @@ class UsersDashBoard extends Component {
         }
     }
 
+    state={
+        userSearch:''
+    }
+
+    search = (userSearch)=>{
+        this.props.userSearch(userSearch)
+    }
 
 
     render() {
@@ -26,10 +33,12 @@ class UsersDashBoard extends Component {
                         <form>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">Search Users</label>
-                                <input type="email" className="form-control" id="exampleInputEmail1"
+                                <input type="email" className="form-control" value={this.state.userSearch} id="exampleInputEmail1" onChange={(e)=>this.setState({
+                                    userSearch:e.target.value
+                                })}
                                        aria-describedby="emailHelp" placeholder="Search for names, username, email, phones"/>
                             </div>
-                            <button type="submit" className="btn btn-primary">Search</button>
+                            <button type="submit" className="btn btn-primary" onClick={()=>this.search(this.state.userSearch)}>Search</button>
                         </form>
                     </div>
                 </div>
@@ -90,6 +99,12 @@ const mapDispatchToProps = (dispatch) =>{
                 else{
                     alert("Could not delete user, try again!");
                 }
+            })
+        },
+        userSearch:(searchTerm) =>{
+            dispatch({
+                type:'SEARCH_USER_TERM',
+                term:searchTerm
             })
         }
     }
