@@ -1,36 +1,45 @@
 import React, {useState} from "react";
 import './Add-user.style.css'
+import {createUser, initAllUsers} from "../Services/UserServices";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import { useHistory } from "react-router-dom";
 
-function AddUser(){
-
-    const [name, setName] = useState("");
-    const [userName,setUserName] = useState("");
+function AddUser(props){
+    let history = useHistory();
+    const [firstName, setFirstName] = useState("");
+    const [lastName,setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [phone,setPhone] = useState("");
 
     function submit() {
-        console.log(name)
-        console.log(userName)
-        console.log(email)
-        console.log(phone)
+        let user={
+            first_name:firstName,
+            last_name:lastName,
+            email:email,
+            phone:phone,
+            created_date:new Date().toDateString()
+        }
+        props.createUser(user);
+        history.push('/users');
     }
 
     return(
         <div className="container">
             <h1>Add User</h1>
-            <h4>Name:</h4>
+            <h4>First Name:</h4>
             <div className="row">
                 <div className="col-sm-12">
-                    <input type="text" className="form-control" id="name" onChange={(e)=>setName(e.target.value)}
-                            placeholder="Enter Name"/>
+                    <input type="text" className="form-control" id="firstname" onChange={(e)=>setFirstName(e.target.value)}
+                            placeholder="Enter First Name"/>
                 </div>
             </div>
-            <h4>Username:</h4>
+            <h4>Last Name:</h4>
             <div className="row">
                 <div className="col-sm-12">
-                    <input type="text" className="form-control" id="username"
-                           onChange={(e)=>setUserName(e.target.value)}
-                           placeholder="Enter Username"/>
+                    <input type="text" className="form-control" id="lastname"
+                           onChange={(e)=>setLastName(e.target.value)}
+                           placeholder="Enter Second Name"/>
                 </div>
             </div>
             <h4>Email:</h4>
@@ -55,4 +64,30 @@ function AddUser(){
 
 }
 
-export default AddUser;
+
+function mapStateToProps(state) {
+    return {
+        users: state.users
+    };
+}
+
+const mapDispatchToProps = (dispatch) =>{
+
+    return{
+        createUser:(user) =>{
+            console.log("new user "+user);
+            createUser(user)
+                .then(user=>dispatch({
+                    type:"CREATE_NEW_USER",
+                    user:user
+                }))
+        }
+    }
+};
+
+AddUser.propTypes = {
+    users: PropTypes.array.isRequired,
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(AddUser);
+

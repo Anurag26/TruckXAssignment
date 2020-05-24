@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import UsersDashBoard from "./Container/UsersDashBoard";
-import Register from './Components/Register';
 import Login from "./Components/Login";
 import AddUser from "./Components/AddUser";
 import EditUser from "./Components/EditUser";
@@ -20,7 +19,6 @@ class App extends Component {
                 <Route path="/add-user" exact={true}><AddUser/></Route>
                 <Route path="/edit-user" exact={true}><EditUser/></Route>
                 <Route path="/login" exact={true}><Login/></Route>
-                <Route path="/register" exact={true}><Register/></Route>
                 <Route path="/users" exact={true}><UsersDashBoard/></Route>
             </BrowserRouter>
             </Provider>

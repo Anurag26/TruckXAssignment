@@ -50,8 +50,6 @@ class UsersDashBoard extends Component {
                                 <div className="col-sm-2">Actions</div>
                             </div>
                         </div>
-                        {/*{Array.from(this.props.users.map(user=>console.log(user)))}*/}
-                        {/*{this.props.users? this.props.users.map(user=><UsersDashBoard user={user}/>):<li></li>}*/}
                         {this.props.users.map(user=><UserTable user={user}/>)}
                     </div>
                 </div>
@@ -61,17 +59,11 @@ class UsersDashBoard extends Component {
     }
 }
 
-// const mapStateToProps = (state) =>{
-//     // console.log(state.users[0])
-// return{
-//     users:state.users
-// }
-// };
 
 function mapStateToProps(state) {
+    console.log(state.users.users)
     return {
-        users: state.users
-        // apiCallsInProgress: state.apiCallsInProgress,
+        users: state.users.users
     };
 }
 

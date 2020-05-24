@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
-import {Link} from "react-router-dom";
+import {loginUser} from "../Services/UserServices";
+import { useHistory } from "react-router-dom";
 
 function Login() {
 
     const [email, setEmail] = useState("");
     const [password,setPassword] = useState("");
-
+    let history = useHistory();
     function submit() {
-        // Do submission
+        let user={
+            email: email,
+            password:password
+        };
+
+        loginUser(user)
+            .then(token=>{
+                window.localStorage.setItem('token',token.token)
+                history.push('/users')
+            })
+            .catch(err=>{throw err});
     }
 
     return (
@@ -41,12 +52,6 @@ function Login() {
                     <label className="col-sm-2 col-form-label"></label>
                     <div className="col-sm-10">
                         <btn className="btn btn-primary btn-block wbdv-button wbdv-login" onClick={()=>submit()}>Log in</btn>
-                        <div className="row">
-                            <div className="col-sm-12 ">
-                                <Link to={'/register'}
-                                   className="float-right wbdv-link wbdv-register">Register as a New User</Link>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </form>
