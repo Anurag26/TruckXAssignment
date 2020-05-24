@@ -52,11 +52,8 @@ const UsersReducer = (state = initState , action)=>{
                             return user;
                         }
                     }
-                    else{
-                        return state.users;
-                    }
                 })
-            }
+            };
 
         default:
             return state;
