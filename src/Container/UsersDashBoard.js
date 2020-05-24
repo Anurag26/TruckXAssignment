@@ -31,7 +31,6 @@ class UsersDashBoard extends Component {
     }
 
     logoutUser = () =>{
-        ("logging out")
         window.localStorage.removeItem('token');
         this.props.history.push('/login');
     }
@@ -82,7 +81,9 @@ class UsersDashBoard extends Component {
                                 <div className="col-sm-2">Actions</div>
                             </div>
                         </div>
-                        {this.props.users.map(user=><UserTable key={user.id} user={user} deleteUser={this.props.deleteUser}/>)}
+                        {this.props.users.map((user, index)=><UserTable key={index}
+                                                                        user={user}
+                                                                        deleteUser={this.props.deleteUser}/>)}
                     </div>
                 </div>
             </div>

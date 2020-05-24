@@ -92,7 +92,7 @@ const mapDispatchToProps = (dispatch) =>{
 
 AddUser.propTypes = {
     users: PropTypes.object.isRequired,
-}
+};
 
 export default connect(mapStateToProps,mapDispatchToProps)(AddUser);
 

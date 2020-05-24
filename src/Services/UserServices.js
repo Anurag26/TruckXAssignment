@@ -37,12 +37,6 @@ export const updateUser = (id,user) =>{
         .catch(err=>{throw err});
 };
 
-// export const deleteUser = (id) =>{
-//     return fetch(`https://reqres.in/api/${id}`,{
-//         method:'DELETE',
-//     }).then(response=>response.json())
-//         .catch(err=>{throw err});
-// };
 
 export const deleteUser = (id) =>{
     return fetch(`https://reqres.in/api/${id}`,{

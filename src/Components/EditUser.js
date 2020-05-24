@@ -36,7 +36,7 @@ function EditUser(props){
             phone:phone,
             created_date:new Date().toDateString()
 
-        }
+        };
         props.updateUser(id,newUser)
         history.push('/users');
     }
