@@ -30,7 +30,7 @@ class UsersDashBoard extends Component {
     }
 
     logoutUser = () =>{
-        console.log("logging out")
+        ("logging out")
         window.localStorage.removeItem('token');
         this.props.history.push('/login');
     }
@@ -51,12 +51,16 @@ class UsersDashBoard extends Component {
                         <form>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">Search Users</label>
-                                <input type="email" className="form-control" value={this.state.userSearch} id="exampleInputEmail1" onChange={(e)=>this.setState({
+                                <input type="email" className="form-control"
+                                       value={this.state.userSearch}
+                                       id="exampleInputEmail1"
+                                       onChange={(e)=>this.setState({
                                     userSearch:e.target.value
                                 })}
                                        aria-describedby="emailHelp" placeholder="Search for names, username, email, phones"/>
                             </div>
-                            <button type="submit" className="btn btn-primary" onClick={()=>this.search(this.state.userSearch)}>Search</button>
+                            <button type="submit" className="btn btn-primary"
+                                    onClick={()=>this.search(this.state.userSearch)}>Search</button>
                         </form>
                     </div>
                 </div>
@@ -69,8 +73,8 @@ class UsersDashBoard extends Component {
                     <div className="row">
                         <div className="col-sm-12 table-head">
                             <div className="row">
-                                <div className="col-sm-2">Name</div>
-                                <div className="col-sm-2">User Name</div>
+                                <div className="col-sm-2">First Name</div>
+                                <div className="col-sm-2">Last Name</div>
                                 <div className="col-sm-2">Email</div>
                                 <div className="col-sm-2">Phone</div>
                                 <div className="col-sm-2">Created At</div>
@@ -88,7 +92,6 @@ class UsersDashBoard extends Component {
 
 
 function mapStateToProps(state) {
-    console.log(state.users.users)
     return {
         users: state.users.users,
         first_time:state.users.first_time

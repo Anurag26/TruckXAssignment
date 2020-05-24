@@ -83,7 +83,6 @@ const mapDispatchToProps = (dispatch) =>{
 
     return{
         createUser:(user) =>{
-            console.log("new user "+user);
             createUser(user)
                 .then(user=>dispatch({
                     type:"CREATE_NEW_USER",

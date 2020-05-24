@@ -16,7 +16,7 @@ function Login() {
     }, []);
 
     function submit() {
-        console.log("Submitted");
+        ("Submitted");
         let user={
             email: email,
             password:password

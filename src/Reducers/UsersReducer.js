@@ -36,7 +36,6 @@ const UsersReducer = (state = initState , action)=>{
                 })
             }
         case 'DELETE_USER_BY_ID':
-            console.log(action.userId)
             return{
                 ...state,
                 users:state.users.filter(user=>{return user.id!==action.userId})
@@ -55,8 +54,6 @@ const UsersReducer = (state = initState , action)=>{
             };
 
         case 'FIND_USER_BYID':
-            console.log(action.userId)
-            console.log(typeof(action.userId))
             return {
                 ...state,
                 users:state.users.map(user=>{  {

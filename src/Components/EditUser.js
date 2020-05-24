@@ -8,17 +8,23 @@ import {useHistory} from "react-router-dom";
 
 function EditUser(props){
     let history = useHistory();
-    const {id} = useParams();
+    const {user} = useParams();
     const [first_name, setFirstName] = useState("");
     const [last_name,setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [phone,setPhone] = useState("");
+    const [id,setId] = useState("");
 
     useEffect(() => {
         if(!window.localStorage.getItem('token')){
             history.push('/login');
         }
-
+        let userDetails = user.split("&&");
+        setFirstName(userDetails[0]);
+        setLastName(userDetails[1]);
+        setEmail(userDetails[2]);
+        userDetails[3]==="undefined"?setPhone(""):setPhone(userDetails[3]);
+        setId(userDetails[4]);
     }, []);
 
     function submit() {
@@ -41,7 +47,9 @@ function EditUser(props){
             <h4>Name:</h4>
             <div className="row">
                 <div className="col-sm-12">
-                    <input type="text" className="form-control" id="name" onChange={(e)=>setFirstName(e.target.value)}
+                    <input type="text" className="form-control"
+                           value={first_name}
+                           id="name" onChange={(e)=>setFirstName(e.target.value)}
                            placeholder="Enter Name"/>
                 </div>
             </div>
@@ -49,6 +57,7 @@ function EditUser(props){
             <div className="row">
                 <div className="col-sm-12">
                     <input type="text" className="form-control" id="username"
+                           value={last_name}
                            onChange={(e)=>setLastName(e.target.value)}
                            placeholder="Enter Username"/>
                 </div>
@@ -57,6 +66,7 @@ function EditUser(props){
             <div className="row">
                 <div className="col-sm-12">
                     <input type="email" className="form-control" id="email"
+                           value={email}
                            onChange={(e)=>setEmail(e.target.value)}
                            placeholder="Enter Email"/>
                 </div>
@@ -65,6 +75,7 @@ function EditUser(props){
             <div className="row">
                 <div className="col-sm-12">
                     <input type="number" className="form-control" id="phonenumber"
+                           value={phone}
                            onChange={(e)=>setPhone(e.target.value)}
                            placeholder="Enter Phone number"/>
                 </div>
@@ -91,7 +102,7 @@ const mapDispatchToProps = (dispatch) =>{
                     type:'UPDATE_USER',
                     userId:id,
                     newUser:newUser
-                })}).catch(err=>console.log(err))
+                })}).catch(err=>(err))
         },
         findUserById:(id)=>{
             return dispatch({
