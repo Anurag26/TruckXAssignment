@@ -18,10 +18,10 @@ The token returned from the api is stored in localstorage.
 Requirements | Status
 ------------ | -------------
 Buttons to Add, Delete, Edit, Search | Done
-Add USER must display new COmponent and use the CREATE API | Done
+Add USER must display new Component and use the CREATE API | Done
 On Edit, user is navigated to new Page and allowed to Edit | Done
 User should be able to delete a record. Ask user confirmation before deleteing | Done
 Use Redux(optional) | Done
 Use class components | Yes
-USe hooks | Yes
+Use hooks | Yes
 Use React router | Yes
