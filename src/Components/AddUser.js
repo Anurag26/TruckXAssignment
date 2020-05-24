@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './Add-user.style.css'
 import {createUser, initAllUsers} from "../Services/UserServices";
 import PropTypes from "prop-types";
@@ -12,6 +12,12 @@ function AddUser(props){
     const [lastName,setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [phone,setPhone] = useState("");
+
+    useEffect(() => {
+        if(!window.localStorage.getItem('token')){
+            history.push('/login');
+        }
+    }, []);
 
     function submit() {
         let user={

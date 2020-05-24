@@ -14,6 +14,13 @@ function EditUser(props){
     const [email, setEmail] = useState("");
     const [phone,setPhone] = useState("");
 
+    useEffect(() => {
+        if(!window.localStorage.getItem('token')){
+            history.push('/login');
+        }
+
+    }, []);
+
     function submit() {
         let newUser={
             first_name:first_name,
@@ -86,6 +93,12 @@ const mapDispatchToProps = (dispatch) =>{
                     newUser:newUser
                 })}).catch(err=>console.log(err))
         },
+        findUserById:(id)=>{
+            return dispatch({
+                type:"FIND_USER_BYID",
+                userId:id
+            })
+        }
     }
 };
 

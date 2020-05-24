@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {loginUser} from "../Services/UserServices";
 import { useHistory } from "react-router-dom";
 
@@ -7,18 +7,32 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password,setPassword] = useState("");
     let history = useHistory();
+
+
+    useEffect(() => {
+        if(window.localStorage.getItem('token')){
+            history.push('/users');
+        }
+    }, []);
+
     function submit() {
+        console.log("Submitted");
         let user={
             email: email,
             password:password
         };
 
         loginUser(user)
-            .then(token=>{
-                window.localStorage.setItem('token',token.token)
-                history.push('/users')
-            })
-            .catch(err=>{throw err});
+            .then(token=> {
+                window.localStorage.setItem('token', token.token);
+                setTimeout(
+                    function() {
+                        history.push('/users')
+                    }
+                        .bind(this),
+                    1200
+                )
+            }).catch(err=>{throw err});
     }
 
     return (

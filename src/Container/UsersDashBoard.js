@@ -5,11 +5,17 @@ import {Link} from "react-router-dom";
 import {deleteUser, initAllUsers} from "../Services/UserServices";
 import PropTypes from "prop-types";
 import UserTable from "../Components/UserTable";
+import { withRouter } from 'react-router-dom';
 
 
 class UsersDashBoard extends Component {
 
     componentDidMount() {
+
+        if(!window.localStorage.getItem('token')){
+            this.props.history.push('/login');
+        }
+
         if(this.props.first_time){
             this.props.initAllUsers();
         }
@@ -23,10 +29,22 @@ class UsersDashBoard extends Component {
         this.props.userSearch(userSearch)
     }
 
+    logoutUser = () =>{
+        console.log("logging out")
+        window.localStorage.removeItem('token');
+        this.props.history.push('/login');
+    }
+
 
     render() {
         return (
             <div className="container">
+                <div className="row">
+                    <div className="col-sm-10"></div>
+                    <div className="col-sm-2">
+                        <button className="btn btn-danger" onClick={()=>this.logoutUser()}>Logout</button>
+                    </div>
+                </div>
                 <h1>My Customers</h1>
                 <div className="row">
                     <div className="col-sm-12">
@@ -114,4 +132,4 @@ UsersDashBoard.propTypes = {
     users: PropTypes.array.isRequired,
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(UsersDashBoard);
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(UsersDashBoard));
