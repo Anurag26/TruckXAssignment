@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { useParams} from "react-router";
 import {connect} from "react-redux";
 import {useHistory} from "react-router-dom";
+import {updateUserByID} from "../Redux/actions/userActions";
 
 function EditUser(props){
     let history = useHistory();
@@ -95,27 +96,31 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) =>{
 
     return{
+        // updateUser:(id,user) =>{
+        //     updateUser(id,user)
+        //         .then(newUser=>{
+        //             dispatch({
+        //             type:'UPDATE_USER',
+        //                 user: {userId: id, newUser: newUser}
+        //         })}).catch(err=>(err))
+        // }
+
         updateUser:(id,user) =>{
             updateUser(id,user)
                 .then(newUser=>{
-                    dispatch({
-                    type:'UPDATE_USER',
-                    userId:id,
-                    newUser:newUser,
-                        // user: {userID: id, newUser: newUser}
-                })}).catch(err=>(err))
-        },
-        findUserById:(id)=>{
-            return dispatch({
-                type:"FIND_USER_BYID",
-                userId:id
-            })
+                    dispatch(updateUserByID(id, newUser))}).catch(err=>(err))
         }
+
+        // updateUser:(id,user) =>{
+        //     updateUser(id,user)
+        //         .then(newUser=>{
+        //             dispatch(updateUserByID(newUser))}).catch(err=>(err))
+        // }
     }
 };
 
 EditUser.propTypes = {
-    users: PropTypes.array.isRequired,
+    users: PropTypes.object.isRequired,
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(EditUser);

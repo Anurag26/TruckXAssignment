@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import { useHistory } from "react-router-dom";
 import uuid from 'react-uuid'
+import {createNewUser} from "../Redux/actions/userActions";
 
 function AddUser(props){
     let history = useHistory();
@@ -84,10 +85,7 @@ const mapDispatchToProps = (dispatch) =>{
     return{
         createUser:(user) =>{
             createUser(user)
-                .then(user=>dispatch({
-                    type:"CREATE_NEW_USER",
-                    user:user
-                }))
+                .then(user=>dispatch(createNewUser(user)))
         }
     }
 };

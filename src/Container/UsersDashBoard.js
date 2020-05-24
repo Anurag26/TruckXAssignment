@@ -6,7 +6,7 @@ import {deleteUser, initAllUsers} from "../Services/UserServices";
 import PropTypes from "prop-types";
 import UserTable from "../Components/UserTable";
 import { withRouter } from 'react-router-dom';
-import {loadUsers} from "../Redux/actions/userActions";
+import {loadUsers,deleteUSerById,searchTermByText} from "../Redux/actions/userActions";
 
 
 class UsersDashBoard extends Component {
@@ -82,7 +82,7 @@ class UsersDashBoard extends Component {
                                 <div className="col-sm-2">Actions</div>
                             </div>
                         </div>
-                        {this.props.users.map(user=><UserTable user={user} deleteUser={this.props.deleteUser}/>)}
+                        {this.props.users.map(user=><UserTable key={user.id} user={user} deleteUser={this.props.deleteUser}/>)}
                     </div>
                 </div>
             </div>
@@ -102,13 +102,6 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) =>{
 
     return{
-        // initAllUsers:() =>{
-        //     initAllUsers()
-        //         .then(users=>dispatch({
-        //             type:"INIT_ALL_USERS",
-        //             users:users.data
-        //         }))
-        // },
         initAllUsers:() =>{
             initAllUsers()
                 .then(users=>dispatch(loadUsers(users.data)))
@@ -117,10 +110,7 @@ const mapDispatchToProps = (dispatch) =>{
             if(window.confirm("Delete user?")){
                 deleteUser(id).then(resp=>{
                     if(resp===204){
-                        return dispatch({
-                            type:"DELETE_USER_BY_ID",
-                            userId:id
-                        })
+                        return dispatch(deleteUSerById((id)))
                     }
                     else{
                         alert("Could not delete user, try again!");
@@ -129,10 +119,7 @@ const mapDispatchToProps = (dispatch) =>{
             }
         },
         userSearch:(searchTerm) =>{
-            dispatch({
-                type:'SEARCH_USER_TERM',
-                term:searchTerm
-            })
+            dispatch(searchTermByText(searchTerm))
         }
     }
 };

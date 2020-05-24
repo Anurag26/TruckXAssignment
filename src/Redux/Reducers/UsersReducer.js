@@ -27,8 +27,8 @@ const UsersReducer = (state = initState , action)=>{
             return{
                 ...state,
                 users:state.users.map(user=>{
-                    if(user.id==action.userId){
-                        return action.newUser;
+                    if(user.id==action.user.userId){
+                        return action.user.newUser;
                     }
                     else{
                         return user;
@@ -52,17 +52,6 @@ const UsersReducer = (state = initState , action)=>{
                     }
                 })
             };
-
-        case 'FIND_USER_BYID':
-            return {
-                ...state,
-                users:state.users.map(user=>{  {
-                    if(user.id==action.userId){
-                        state.user_being_edited=user
-                        return state.user_being_edited
-                    }
-                }})
-            }
         default:
             return state;
     }
