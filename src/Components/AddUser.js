@@ -4,6 +4,7 @@ import {createUser, initAllUsers} from "../Services/UserServices";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import { useHistory } from "react-router-dom";
+import uuid from 'react-uuid'
 
 function AddUser(props){
     let history = useHistory();
@@ -18,7 +19,8 @@ function AddUser(props){
             last_name:lastName,
             email:email,
             phone:phone,
-            created_date:new Date().toDateString()
+            created_date:new Date().toDateString(),
+            uuid:uuid()
         }
         props.createUser(user);
         history.push('/users');

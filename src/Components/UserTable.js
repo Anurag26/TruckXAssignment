@@ -7,14 +7,16 @@ class UserTable extends Component {
 
             <div className="col-sm-12 table-row">
                 <div className="row">
-                    <div className="col-sm-2">{this.props.user.first_name}</div>
-                    <div className="col-sm-2">{this.props.user.last_name}</div>
-                    <div className="col-sm-2">{this.props.user.email}</div>
-                    <div className="col-sm-2">{this.props.user.phone}</div>
+                    <div className="col-sm-2">{this.props.user.first_name&&this.props.user.first_name}</div>
+                    <div className="col-sm-2">{this.props.user.last_name&&this.props.user.last_name}</div>
+                    <div className="col-sm-2">{this.props.user.email&&this.props.user.email}</div>
+                    <div className="col-sm-2">{this.props.user.phone&&this.props.user.phone}</div>
                     <div className="col-sm-2">{this.props.user.created_date && this.props.user.created_date}</div>
                     <div className="col-sm-2">
                         <div className="row">
-                            <div className="col-sm-6"><Link to="/edit-user" className="btn btn-primary">Edit</Link></div>
+                            <Link className="btn btn-primary"  to={{
+                                pathname: '/edit-user/'+this.props.user.id,
+                            }}>Edit</Link>
                             <div className="col-sm-6"><button className="btn btn-danger">Delete</button></div>
                         </div>
                     </div>

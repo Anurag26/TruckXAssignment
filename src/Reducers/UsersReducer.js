@@ -13,13 +13,27 @@ const UsersReducer = (state = initState , action)=>{
             users:action.users
             };
         case 'CREATE_NEW_USER':
-            alert("New User created.")
             return{
                 ...state,
                 users:[
                     ...state.users,
                     action.user
                 ]
+            }
+        case 'UPDATE_USER_BY_ID':
+            console.log(action.userId)
+            console.log(action.newUser)
+            return{
+                ...state,
+                users:state.users.map(user=>{
+                    if(user.id==action.userId){
+                        console.log("user found")
+                        return action.newUser;
+                    }
+                    else{
+                        return user;
+                    }
+                })
             }
 
         default:

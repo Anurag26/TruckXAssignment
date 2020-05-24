@@ -1,19 +1,34 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import './Add-user.style.css'
+import {createUser} from "../Services/UserServices";
+import PropTypes from "prop-types";
+import { useParams} from "react-router";
+import {connect} from "react-redux";
+import {useHistory} from "react-router-dom";
 
-function EditUser(){
-
-    const [name, setName] = useState("");
-    const [userName,setUserName] = useState("");
+function EditUser(props){
+    let history = useHistory();
+    const {id} = useParams();
+    const [first_name, setFirstName] = useState("");
+    const [last_name,setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [phone,setPhone] = useState("");
 
     function submit() {
-        console.log(name)
-        console.log(userName)
-        console.log(email)
-        console.log(phone)
+        let newUser={
+            first_name:first_name,
+            last_name:last_name,
+            email:email,
+            phone:phone
+
+        }
+        props.updateUser(id,newUser)
+        history.push('/users');
     }
+
+    // useEffect(() => {
+    //     props.findUserById(id)
+    // }, []);
 
     return(
         <div className="container">
@@ -21,7 +36,7 @@ function EditUser(){
             <h4>Name:</h4>
             <div className="row">
                 <div className="col-sm-12">
-                    <input type="text" className="form-control" id="name" onChange={(e)=>setName(e.target.value)}
+                    <input type="text" className="form-control" id="name" onChange={(e)=>setFirstName(e.target.value)}
                            placeholder="Enter Name"/>
                 </div>
             </div>
@@ -29,7 +44,7 @@ function EditUser(){
             <div className="row">
                 <div className="col-sm-12">
                     <input type="text" className="form-control" id="username"
-                           onChange={(e)=>setUserName(e.target.value)}
+                           onChange={(e)=>setLastName(e.target.value)}
                            placeholder="Enter Username"/>
                 </div>
             </div>
@@ -55,4 +70,26 @@ function EditUser(){
 
 }
 
-export default EditUser;
+function mapStateToProps(state) {
+    return {
+        users: state.users
+    };
+}
+
+const mapDispatchToProps = (dispatch) =>{
+
+    return{
+        updateUser:(userId,newUser) =>{dispatch({
+                    type:"UPDATE_USER_BY_ID",
+                    userId:userId,
+                    newUser: newUser
+                })
+        }
+    }
+};
+
+EditUser.propTypes = {
+    users: PropTypes.array.isRequired,
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(EditUser);

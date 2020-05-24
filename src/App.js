@@ -17,7 +17,7 @@ class App extends Component {
             <Provider store={store}>
             <BrowserRouter>
                 <Route path="/add-user" exact={true}><AddUser/></Route>
-                <Route path="/edit-user" exact={true}><EditUser/></Route>
+                <Route path="/edit-user/:id" exact={true}><EditUser/></Route>
                 <Route path="/login" exact={true}><Login/></Route>
                 <Route path="/users" exact={true}><UsersDashBoard/></Route>
             </BrowserRouter>

@@ -10,8 +10,10 @@ import UserTable from "../Components/UserTable";
 class UsersDashBoard extends Component {
 
     componentDidMount() {
-        console.log("component did mount")
-        this.props.initAllUsers();
+        if(this.props.users.length===0){
+            this.props.initAllUsers();
+        }
+
     }
 
 
