@@ -25,3 +25,14 @@ export const createUser = (user) =>{
     }).then(response=>response.json())
         .catch(err=>{throw err});
 };
+
+export const updateUser = (id,user) =>{
+    return fetch(`https://reqres.in/api/${id}`,{
+        method:'PUT',
+        body:JSON.stringify(user),
+        headers:{
+            'content-type':'application/json'
+        }
+    }).then(response=>response.json())
+        .catch(err=>{throw err});
+};

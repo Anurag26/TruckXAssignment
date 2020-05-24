@@ -20,7 +20,7 @@ const UsersReducer = (state = initState , action)=>{
                     action.user
                 ]
             }
-        case 'UPDATE_USER_BY_ID':
+        case 'UPDATE_USER':
             console.log(action.userId)
             console.log(action.newUser)
             return{

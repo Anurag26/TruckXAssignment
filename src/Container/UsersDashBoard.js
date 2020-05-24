@@ -18,7 +18,6 @@ class UsersDashBoard extends Component {
 
 
 
-
     render() {
         return (
             <div className="container">
@@ -52,7 +51,7 @@ class UsersDashBoard extends Component {
                                 <div className="col-sm-2">Actions</div>
                             </div>
                         </div>
-                        {this.props.users.map(user=><UserTable user={user}/>)}
+                        {this.props.users.map(user=><UserTable user={user} />)}
                     </div>
                 </div>
             </div>

@@ -7,10 +7,10 @@ class UserTable extends Component {
 
             <div className="col-sm-12 table-row">
                 <div className="row">
-                    <div className="col-sm-2">{this.props.user.first_name&&this.props.user.first_name}</div>
-                    <div className="col-sm-2">{this.props.user.last_name&&this.props.user.last_name}</div>
-                    <div className="col-sm-2">{this.props.user.email&&this.props.user.email}</div>
-                    <div className="col-sm-2">{this.props.user.phone&&this.props.user.phone}</div>
+                    <div className="col-sm-2">{this.props.user.first_name}</div>
+                    <div className="col-sm-2">{this.props.user.last_name}</div>
+                    <div className="col-sm-2">{this.props.user.email}</div>
+                    <div className="col-sm-2">{this.props.user.phone}</div>
                     <div className="col-sm-2">{this.props.user.created_date && this.props.user.created_date}</div>
                     <div className="col-sm-2">
                         <div className="row">

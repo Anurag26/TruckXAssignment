@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from "react";
 import './Add-user.style.css'
-import {createUser} from "../Services/UserServices";
+import {createUser, updateUser} from "../Services/UserServices";
 import PropTypes from "prop-types";
 import { useParams} from "react-router";
 import {connect} from "react-redux";
@@ -19,16 +19,14 @@ function EditUser(props){
             first_name:first_name,
             last_name:last_name,
             email:email,
-            phone:phone
+            phone:phone,
+            created_date:new Date().toDateString()
 
         }
         props.updateUser(id,newUser)
         history.push('/users');
     }
 
-    // useEffect(() => {
-    //     props.findUserById(id)
-    // }, []);
 
     return(
         <div className="container">
@@ -79,12 +77,15 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) =>{
 
     return{
-        updateUser:(userId,newUser) =>{dispatch({
-                    type:"UPDATE_USER_BY_ID",
-                    userId:userId,
-                    newUser: newUser
-                })
-        }
+        updateUser:(id,user) =>{
+            updateUser(id,user)
+                .then(newUser=>{
+                    dispatch({
+                    type:'UPDATE_USER',
+                    userId:id,
+                    newUser:newUser
+                })}).catch(err=>console.log(err))
+        },
     }
 };
 
